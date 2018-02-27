@@ -2,6 +2,7 @@ package interpreter
 
 import (
 	"fmt"
+	"unicode"
 
 	"github.com/ecofast/rtl/sysutils"
 )
@@ -48,27 +49,6 @@ func New() *Interpreter {
 	}
 }
 
-func isDigit(c rune) bool {
-	if '0' <= c && c <= '9' {
-		return true
-	}
-	return false
-}
-
-func convToDigit(c rune) (int, bool) {
-	if '0' <= c && c <= '9' {
-		return int(c - '0'), true
-	}
-	return 0, false
-}
-
-func isSpace(c rune) bool {
-	if ' ' == c {
-		return true
-	}
-	return false
-}
-
 // Advance the 'pos' pointer and set the 'currChar' variable
 func (self *Interpreter) advance() {
 	self.pos += 1
@@ -80,7 +60,7 @@ func (self *Interpreter) advance() {
 }
 
 func (self *Interpreter) skipWhiteSpace() {
-	for self.currChar != 0 && isSpace(self.currChar) {
+	for self.currChar != 0 && unicode.IsSpace(self.currChar) {
 		self.advance()
 	}
 }
@@ -88,7 +68,7 @@ func (self *Interpreter) skipWhiteSpace() {
 // Return a (multidigit) integer consumed from the input
 func (self *Interpreter) integer() int {
 	ret := ""
-	for self.currChar != 0 && isDigit(self.currChar) {
+	for self.currChar != 0 && unicode.IsDigit(self.currChar) {
 		ret += string(self.currChar)
 		self.advance()
 	}
@@ -100,12 +80,12 @@ func (self *Interpreter) integer() int {
 // This method is responsible for breaking a sentence apart into tokens.
 func (self *Interpreter) getNextToken() token {
 	for self.currChar != 0 {
-		if isSpace(self.currChar) {
+		if unicode.IsSpace(self.currChar) {
 			self.skipWhiteSpace()
 			continue
 		}
 
-		if isDigit(self.currChar) {
+		if unicode.IsDigit(self.currChar) {
 			return newToken(cTokenTypeOfInteger, self.integer())
 		}
 
@@ -119,7 +99,7 @@ func (self *Interpreter) getNextToken() token {
 			return newToken(cTokenTypeOfMinusSign, '-')
 		}
 
-		panic(fmt.Sprintf("Error parsing input1: %s", string(self.text)))
+		panic(fmt.Sprintf("Error parsing input: %s", string(self.text)))
 	}
 	return newToken(cTokenTypeOfEOF, nil)
 }
