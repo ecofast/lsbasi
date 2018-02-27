@@ -2,6 +2,7 @@ package interpreter
 
 import (
 	"fmt"
+	"unicode"
 )
 
 // Token types
@@ -44,7 +45,7 @@ func New() *Interpreter {
 }
 
 func convToDigit(c rune) (int, bool) {
-	if '0' <= c && c <= '9' {
+	if unicode.IsDigit(c) {
 		return int(c - '0'), true
 	}
 	return 0, false
