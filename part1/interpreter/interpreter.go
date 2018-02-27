@@ -84,7 +84,7 @@ func (self *Interpreter) getNextToken() token {
 		return newToken(cTokenTypeOfPlusSign, '+')
 	}
 
-	panic(fmt.Sprintf("Error parsing input1: %s", string(self.text)))
+	panic(fmt.Sprintf("Error parsing input: %s", string(self.text)))
 }
 
 // compare the current token type with the passed token type
