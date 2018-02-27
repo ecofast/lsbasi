@@ -2,19 +2,23 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"part2/interpreter"
+	"strings"
 )
 
 func main() {
 	fmt.Println("Let's Build A Simple Interpreter - Part 2")
 
 	parser := interpreter.New()
-	s := ""
+	reader := bufio.NewReader(os.Stdin)
 	for {
-		if n, err := fmt.Scan(&s); n == 0 || err != nil {
-			return
+		if s, err := reader.ReadString('\n'); err == nil {
+			fmt.Println(parser.Parse(strings.TrimSpace(s)))
+			continue
 		}
-		fmt.Println(parser.Parse(s))
+		break
 	}
 }
