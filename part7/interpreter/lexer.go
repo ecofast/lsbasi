@@ -13,14 +13,6 @@ type Lexer struct {
 	currChar rune
 }
 
-func newLexer(s []rune) *Lexer {
-	r := &Lexer{
-		text: s,
-	}
-	r.currChar = r.text[r.pos]
-	return r
-}
-
 // Advance the 'pos' pointer and set the 'currChar' variable
 func (self *Lexer) advance() {
 	self.pos += 1
@@ -51,7 +43,7 @@ func (self *Lexer) integer() int {
 //
 // This method is responsible for breaking a sentence apart into tokens.
 // One token at a time.
-func (self *Lexer) getNextToken() token {
+func (self *Lexer) getNextToken() *Token {
 	for self.currChar != 0 {
 		if unicode.IsSpace(self.currChar) {
 			self.skipWhiteSpace()
