@@ -114,7 +114,7 @@ func (self *Interpreter) eat(tokenType TokenType) {
 		return
 	}
 
-	panic(fmt.Sprintf("Error parsing input: %s", self.text))
+	panic(fmt.Sprintf("Error parsing input: %s", string(self.text)))
 }
 
 // parse "INTEGER PLUS INTEGER" or "INTEGER MINUS INTEGER"
