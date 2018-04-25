@@ -6,6 +6,8 @@ package interpreter
 // there is no more input left for lexical analysis
 type TokenType = int
 
+type TokenValue = interface{}
+
 const (
 	cTokenTypeOfNone TokenType = iota
 	cTokenTypeOfInteger
@@ -19,12 +21,12 @@ const (
 )
 
 type Token struct {
-	t TokenType   // token type: INTEGER, PLUS, MINUS, MUL, DIV, or EOF
-	v interface{} // token value: non-negative integer value, '+', '-', '*', '/', or None
+	t TokenType  // token type: INTEGER, PLUS, MINUS, MUL, DIV, or EOF
+	v TokenValue // token value: non-negative integer value, '+', '-', '*', '/', or None
 }
 
-func newToken(t TokenType, v interface{}) Token {
-	return Token{
+func newToken(t TokenType, v TokenValue) *Token {
+	return &Token{
 		t: t,
 		v: v,
 	}
