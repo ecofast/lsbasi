@@ -6,15 +6,7 @@ import (
 
 type Parser struct {
 	lexer     *Lexer
-	currToken token
-}
-
-func newParser(s string) *Parser {
-	p := &Parser{}
-	p.lexer = newLexer([]rune(s))
-	// set current token to the first token taken from the input
-	p.currToken = p.lexer.getNextToken()
-	return p
+	currToken *Token
 }
 
 // compare the current token type with the passed token type
