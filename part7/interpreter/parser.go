@@ -19,7 +19,7 @@ func (self *Parser) eat(tokenType TokenType) {
 		return
 	}
 
-	panic(fmt.Sprintf("Error parsing input: %s", self.lexer.text))
+	panic(fmt.Sprintf("Error parsing input: %s", string(self.lexer.text)))
 }
 
 // factor: INTEGER | LPAREN expr RPAREN
