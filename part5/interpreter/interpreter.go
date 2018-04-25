@@ -23,7 +23,7 @@ func (self *Interpreter) eat(tokenType TokenType) {
 		return
 	}
 
-	panic(fmt.Sprintf("Error parsing input: %s", self.lexer.text))
+	panic(fmt.Sprintf("Error parsing input: %s", string(self.lexer.text)))
 }
 
 // Return an INTEGER token value.
