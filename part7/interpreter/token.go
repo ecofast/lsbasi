@@ -18,13 +18,13 @@ const (
 	cTokenTypeOfEOF
 )
 
-type token struct {
+type Token struct {
 	t TokenType   // token type: INTEGER, PLUS, MINUS, MUL, DIV, or EOF
 	v interface{} // token value: non-negative integer value, '+', '-', '*', '/', or None
 }
 
-func newToken(t TokenType, v interface{}) token {
-	return token{
+func newToken(t TokenType, v interface{}) Token {
+	return Token{
 		t: t,
 		v: v,
 	}
