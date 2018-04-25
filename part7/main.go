@@ -12,11 +12,11 @@ import (
 func main() {
 	fmt.Println("Let's Build A Simple Interpreter - Part 7")
 
-	i := interpreter.New()
+	interdivter := interpreter.New()
 	reader := bufio.NewReader(os.Stdin)
 	for {
 		if s, err := reader.ReadString('\n'); err == nil {
-			fmt.Println(i.Interpret(strings.TrimSpace(s)))
+			fmt.Println(interdivter.Interpret(strings.TrimSpace(s)))
 			continue
 		}
 		break
