@@ -116,7 +116,7 @@ func (self *Interpreter) eat(tokenType TokenType) {
 		return
 	}
 
-	panic(fmt.Sprintf("Error parsing input: %s", self.text))
+	panic(fmt.Sprintf("Error parsing input: %s", string(self.text)))
 }
 
 // Return an INTEGER token value.
