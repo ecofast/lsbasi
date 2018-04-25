@@ -1,30 +1,29 @@
 package interpreter
 
-type ast interface {
-}
+type ast = interface{}
 
 type binOp struct {
 	left  ast
 	right ast
-	tok   token
+	op    *Token
 }
 
 type num struct {
-	tok token
-	val int
+	token *Token
+	value int
 }
 
-func newBinOp(left ast, tok token, right ast) *binOp {
+func newBinOp(left ast, op *Token, right ast) *binOp {
 	return &binOp{
 		left:  left,
-		tok:   tok,
+		op:    op,
 		right: right,
 	}
 }
 
-func newNum(tok token) *num {
+func newNum(token *Token) *num {
 	return &num{
-		tok: tok,
-		val: tok.v.(int),
+		token: token,
+		value: token.v.(int),
 	}
 }
