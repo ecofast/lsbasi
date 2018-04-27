@@ -8,8 +8,8 @@ import (
 )
 
 type Lexer struct {
-	text     []rune // client string input, e.g. "4 + 2 * 3 - 6 / 2", etc
-	pos      int    // an index into text
+	text     []rune
+	pos      int
 	currChar rune
 }
 
@@ -50,7 +50,7 @@ func (self *Lexer) integer() int {
 // Handle identifiers and reserved keywords
 func (self *Lexer) id() *Token {
 	ret := ""
-	for self.currChar != 0 && unicode.IsDigit(self.currChar) {
+	for self.currChar != 0 && unicode.IsLetter(self.currChar) {
 		ret += string(self.currChar)
 		self.advance()
 	}
