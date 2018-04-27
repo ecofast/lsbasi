@@ -9,7 +9,7 @@ type Interpreter struct {
 }
 
 var (
-	symbolTable map[string]int
+	symbolTable = make(map[string]int)
 )
 
 func New() *Interpreter {
@@ -91,7 +91,6 @@ func (self *Interpreter) Interpret(s string) ast {
 	self.parser.lexer.currChar = self.parser.lexer.text[self.parser.lexer.pos]
 	self.parser.currToken = self.parser.lexer.getNextToken()
 	tree := self.parser.parse()
-	// if tree
 	return self.visit(tree)
 }
 
