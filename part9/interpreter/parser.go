@@ -43,8 +43,8 @@ func (self *Parser) compoundStatement() ast {
 }
 
 /*
-statement_list : statement
-               | statement SEMI statement_list
+statement_list: statement
+              | statement SEMI statement_list
 */
 func (self *Parser) statementList() []ast {
 	node := self.statement()
@@ -60,9 +60,9 @@ func (self *Parser) statementList() []ast {
 }
 
 /*
-statement : compound_statement
-          | assignment_statement
-          | empty
+statement: compound_statement
+         | assignment_statement
+         | empty
 */
 func (self *Parser) statement() ast {
 	if self.currToken.t == cTokenTypeOfBeginSign {
@@ -96,11 +96,11 @@ func (self *Parser) empty() ast {
 }
 
 /*
-factor : PLUS factor
-       | MINUS factor
-       | INTEGER
-       | LPAREN expr RPAREN
-       | variable
+factor: PLUS factor
+      | MINUS factor
+      | INTEGER
+      | LPAREN expr RPAREN
+      | variable
 */
 func (self *Parser) factor() ast {
 	ct := self.currToken
