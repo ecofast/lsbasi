@@ -72,9 +72,7 @@ func (self *Parser) variableDeclaration() []ast {
 
 	var varDeclarations []ast
 	typeNode := self.typeSpec()
-	// fmt.Println(typeNode.(*typeDef).value)
 	for _, varNode := range varNodes {
-		// fmt.Println(varNode.(*varDef).value)
 		varDeclarations = append(varDeclarations, newVarDecl(varNode, typeNode))
 	}
 	return varDeclarations
