@@ -92,8 +92,7 @@ func (self *Interpreter) visitBinOp(node *binOp) float64 {
 	if node.op.t == cTokenTypeOfIntegerDivSign {
 		return self.visit(node.left) / self.visit(node.right)
 	}
-	// return float64(self.visit(node.left)) / float64(self.visit(node.right))
-	return self.visit(node.left) / self.visit(node.right)
+	return float64(self.visit(node.left)) / float64(self.visit(node.right))
 }
 
 func (self *Interpreter) visitNum(node *num) float64 {
